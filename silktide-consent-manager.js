@@ -1,5 +1,3 @@
-// Silktide Consent Manager - https://silktide.com/consent-manager/  
-
 class SilktideCookieBanner {
   constructor(config) {
     this.config = config; // Save config to the instance
@@ -284,23 +282,6 @@ class SilktideCookieBanner {
         : ''
     }>${acceptAllButtonText}</button>`;
 
-    // Reject button - add these missing lines
-const rejectNonEssentialButtonText = this.config.text?.banner?.rejectNonEssentialButtonText;
-const rejectNonEssentialButtonLabel = this.config.text?.banner?.rejectNonEssentialButtonAccessibleLabel;
-const rejectNonEssentialButton = rejectNonEssentialButtonText ? `<button class="reject-all st-button st-button--primary"${
-  rejectNonEssentialButtonLabel && rejectNonEssentialButtonLabel !== rejectNonEssentialButtonText 
-    ? ` aria-label="${rejectNonEssentialButtonLabel}"` 
-    : ''
-}>${rejectNonEssentialButtonText}</button>` : '';
-    
-    
-    // Reject button
-    const rejectNonEssentialButton = rejectNonEssentialButtonText ? `<button class="reject-all st-button st-button--primary"${
-  rejectNonEssentialButtonLabel && rejectNonEssentialButtonLabel !== rejectNonEssentialButtonText 
-    ? ` aria-label="${rejectNonEssentialButtonLabel}"` 
-    : ''
-}>${rejectNonEssentialButtonText}</button>` : '';
-
     // Preferences button
     const preferencesButtonText = this.config.text?.banner?.preferencesButtonText || 'Preferences';
     const preferencesButtonLabel = this.config.text?.banner?.preferencesButtonAccessibleLabel;
@@ -324,7 +305,6 @@ const rejectNonEssentialButton = rejectNonEssentialButtonText ? `<button class="
       ${bannerDescription}
       <div class="actions">                               
         ${acceptAllButton}
-        ${rejectNonEssentialButtonText ? rejectNonEssentialButton : ''}
         <div class="actions-row">
           ${preferencesButton}
           ${silktideLogo}
@@ -409,11 +389,13 @@ const rejectNonEssentialButton = rejectNonEssentialButtonText ? `<button class="
     }>${acceptAllButtonText}</button>`;
     
     // Reject button
-    const rejectNonEssentialButton = rejectNonEssentialButtonText ? `<button class="preferences-reject-all st-button st-button--primary"${
-  rejectNonEssentialButtonLabel && rejectNonEssentialButtonLabel !== rejectNonEssentialButtonText 
-    ? ` aria-label="${rejectNonEssentialButtonLabel}"` 
-    : ''
-}>${rejectNonEssentialButtonText}</button>` : '';
+    const rejectNonEssentialButtonText = this.config.text?.banner?.rejectNonEssentialButtonText || 'Reject non-essential';
+    const rejectNonEssentialButtonLabel = this.config.text?.banner?.rejectNonEssentialButtonAccessibleLabel;
+    const rejectNonEssentialButton = `<button class="preferences-reject-all st-button st-button--primary"${
+      rejectNonEssentialButtonLabel && rejectNonEssentialButtonLabel !== rejectNonEssentialButtonText 
+        ? ` aria-label="${rejectNonEssentialButtonLabel}"` 
+        : ''
+    }>${rejectNonEssentialButtonText}</button>`;
     
     // Credit link
     const creditLinkText = this.config.text?.preferences?.creditLinkText || 'Get this banner for free';
@@ -470,7 +452,7 @@ const rejectNonEssentialButton = rejectNonEssentialButtonText ? `<button class="
       </section>
       <footer>
         ${acceptAllButton}
-        ${rejectNonEssentialButtonText ? rejectNonEssentialButton : ''}
+        ${rejectNonEssentialButton}
         ${creditLink}
       </footer>
     `;
@@ -623,12 +605,10 @@ const rejectNonEssentialButton = rejectNonEssentialButtonText ? `<button class="
     if (this.banner) {
       // Get the buttons
       const acceptButton = this.banner.querySelector('.accept-all');
-      const rejectButton = this.banner.querySelector('.reject-all');
       const preferencesButton = this.banner.querySelector('.preferences');
 
       // Add event listeners to the buttons
       acceptButton?.addEventListener('click', () => this.handleCookieChoice(true));
-      rejectButton?.addEventListener('click', () => this.handleCookieChoice(false));
       preferencesButton?.addEventListener('click', () => {
         this.showBackdrop();
         this.toggleModal(true);
@@ -849,4 +829,4 @@ const rejectNonEssentialButton = rejectNonEssentialButtonText ? `<button class="
   } else {
     initCookieBanner();
   }
-})();
+})()
