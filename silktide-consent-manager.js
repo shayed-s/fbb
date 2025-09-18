@@ -283,6 +283,16 @@ class SilktideCookieBanner {
         ? ` aria-label="${acceptAllButtonLabel}"` 
         : ''
     }>${acceptAllButtonText}</button>`;
+
+    // Reject button - add these missing lines
+const rejectNonEssentialButtonText = this.config.text?.banner?.rejectNonEssentialButtonText;
+const rejectNonEssentialButtonLabel = this.config.text?.banner?.rejectNonEssentialButtonAccessibleLabel;
+const rejectNonEssentialButton = rejectNonEssentialButtonText ? `<button class="reject-all st-button st-button--primary"${
+  rejectNonEssentialButtonLabel && rejectNonEssentialButtonLabel !== rejectNonEssentialButtonText 
+    ? ` aria-label="${rejectNonEssentialButtonLabel}"` 
+    : ''
+}>${rejectNonEssentialButtonText}</button>` : '';
+    
     
     // Reject button
     const rejectNonEssentialButton = rejectNonEssentialButtonText ? `<button class="reject-all st-button st-button--primary"${
@@ -399,13 +409,11 @@ class SilktideCookieBanner {
     }>${acceptAllButtonText}</button>`;
     
     // Reject button
-    const rejectNonEssentialButtonText = this.config.text?.banner?.rejectNonEssentialButtonText || 'Reject non-essential';
-    const rejectNonEssentialButtonLabel = this.config.text?.banner?.rejectNonEssentialButtonAccessibleLabel;
-    const rejectNonEssentialButton = `<button class="preferences-reject-all st-button st-button--primary"${
-      rejectNonEssentialButtonLabel && rejectNonEssentialButtonLabel !== rejectNonEssentialButtonText 
-        ? ` aria-label="${rejectNonEssentialButtonLabel}"` 
-        : ''
-    }>${rejectNonEssentialButtonText}</button>`;
+    const rejectNonEssentialButton = rejectNonEssentialButtonText ? `<button class="preferences-reject-all st-button st-button--primary"${
+  rejectNonEssentialButtonLabel && rejectNonEssentialButtonLabel !== rejectNonEssentialButtonText 
+    ? ` aria-label="${rejectNonEssentialButtonLabel}"` 
+    : ''
+}>${rejectNonEssentialButtonText}</button>` : '';
     
     // Credit link
     const creditLinkText = this.config.text?.preferences?.creditLinkText || 'Get this banner for free';
@@ -462,7 +470,7 @@ class SilktideCookieBanner {
       </section>
       <footer>
         ${acceptAllButton}
-        ${rejectNonEssentialButton}
+        ${rejectNonEssentialButtonText ? rejectNonEssentialButton : ''}
         ${creditLink}
       </footer>
     `;
