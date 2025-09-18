@@ -285,7 +285,7 @@ class SilktideCookieBanner {
     }>${acceptAllButtonText}</button>`;
     
     // Reject button
-    const rejectNonEssentialButtonText = this.config.text?.banner?.rejectNonEssentialButtonText || 'Reject non-essential';
+    const rejectNonEssentialButtonText = this.config.text?.banner?.rejectNonEssentialButtonText ||
     const rejectNonEssentialButtonLabel = this.config.text?.banner?.rejectNonEssentialButtonAccessibleLabel;
     const rejectNonEssentialButton = `<button class="reject-all st-button st-button--primary"${
       rejectNonEssentialButtonLabel && rejectNonEssentialButtonLabel !== rejectNonEssentialButtonText 
@@ -316,7 +316,7 @@ class SilktideCookieBanner {
       ${bannerDescription}
       <div class="actions">                               
         ${acceptAllButton}
-        ${rejectNonEssentialButton}
+        ${rejectNonEssentialButtonText ? rejectNonEssentialButton : ''}
         <div class="actions-row">
           ${preferencesButton}
           ${silktideLogo}
