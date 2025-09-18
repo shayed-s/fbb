@@ -285,13 +285,11 @@ class SilktideCookieBanner {
     }>${acceptAllButtonText}</button>`;
     
     // Reject button
-    const rejectNonEssentialButtonText = this.config.text?.banner?.rejectNonEssentialButtonText ||
-    const rejectNonEssentialButtonLabel = this.config.text?.banner?.rejectNonEssentialButtonAccessibleLabel;
-    const rejectNonEssentialButton = `<button class="reject-all st-button st-button--primary"${
-      rejectNonEssentialButtonLabel && rejectNonEssentialButtonLabel !== rejectNonEssentialButtonText 
-        ? ` aria-label="${rejectNonEssentialButtonLabel}"` 
-        : ''
-    }>${rejectNonEssentialButtonText}</button>`;
+    const rejectNonEssentialButton = rejectNonEssentialButtonText ? `<button class="reject-all st-button st-button--primary"${
+  rejectNonEssentialButtonLabel && rejectNonEssentialButtonLabel !== rejectNonEssentialButtonText 
+    ? ` aria-label="${rejectNonEssentialButtonLabel}"` 
+    : ''
+}>${rejectNonEssentialButtonText}</button>` : '';
 
     // Preferences button
     const preferencesButtonText = this.config.text?.banner?.preferencesButtonText || 'Preferences';
